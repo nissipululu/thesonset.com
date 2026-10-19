@@ -876,3 +876,206 @@ summary:focus-visible {
 .stub h1 {
   font-size: clamp(26px, 3.2vw, 36px);
 }
+
+/* =====================================================================
+   Match the original Sonset design (the site Simon designed, now at nissipululu.com), 2026-10-19:
+   airy header with 70px above and below, small uppercase letterspaced silver nav, a 940px page,
+   lighter type, no coloured band, centred quiet footer. Content and structure are unchanged.
+   ===================================================================== */
+:root {
+  --max: 940px;
+  --section: 64px;
+  --hair: #EDEDED;
+  --muted: #8A8A8A;
+}
+
+body {
+  color: #333;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+h1,
+h2,
+h3 {
+  color: #333;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: clamp(28px, 3.4vw, 38px);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.lede {
+  font-size: 17px;
+}
+
+.eyebrow {
+  color: #9A9A9A;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* Header and nav, as in the original: 70px above and below, uppercase, Montserrat 12px, letter spacing 1px, silver */
+.site-header {
+  border-bottom: 0;
+  padding: 40px 0;
+}
+
+.site-header .container {
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .site-header {
+    padding: 70px 0;
+  }
+}
+
+.nav a {
+  padding: 7px 11px;
+  color: silver;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.nav a:hover,
+.nav a[aria-current="page"] {
+  color: #333;
+  text-decoration: none;
+}
+
+@media (min-width: 1000px) {
+  .nav {
+    gap: 0;
+  }
+}
+
+.menu summary {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid #E2E2E2;
+  color: #666;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.menu-panel a {
+  color: silver;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.menu-panel a[aria-current="page"] {
+  color: #333;
+  text-decoration: none;
+}
+
+/* No coloured band, no hard section lines: air instead */
+.section {
+  border-top: 0;
+}
+
+.section--band {
+  background: var(--white);
+}
+
+/* Buttons and small labels use the same quiet uppercase as the nav */
+.button {
+  min-height: 48px;
+  padding: 14px 28px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.row > :first-child,
+.step h3 {
+  letter-spacing: 0;
+}
+
+/* Footer: centred and quiet, like the original */
+.site-footer {
+  padding: 48px 0;
+  border-top: 0;
+  text-align: center;
+  color: #666;
+}
+
+.footer-grid {
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-links {
+  justify-content: center;
+  gap: 0 8px;
+}
+
+.footer-links a {
+  padding: 6px 10px;
+  color: silver;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #333;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-links a {
+    padding: 6px 10px;
+  }
+}
+
+/* fit six nav links beside the word mark on a 940px page */
+@media (min-width: 768px) {
+  .brand img {
+    width: 130px;
+  }
+}
+
+.nav a {
+  padding: 7px 9px;
+  letter-spacing: 0.8px;
+}
+
+.hero h1 {
+  font-size: clamp(26px, 3vw, 32px);
+  line-height: 1.22;
+}
