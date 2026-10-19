@@ -1,1 +1,3 @@
+User-agent: *
+Allow: /
 Sitemap: https://www.thesonset.com/sitemap.xml
