@@ -1079,3 +1079,8 @@ h3 {
   font-size: clamp(26px, 3vw, 32px);
   line-height: 1.22;
 }
+
+/* the content area is a full 940px, like the original (the container holds 24px of padding each side) */
+:root {
+  --max: 988px;
+}
