@@ -37,7 +37,7 @@ a{color:inherit}
 /* home hero: streak photo, headline bottom left, glass card bottom right */
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:120px var(--g) clamp(28px,5vh,56px);overflow:hidden;background:#000}
 .hero-bg{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover}
-.scrim{position:absolute;inset:0;background:rgba(0,0,0,.22)}
+.scrim{position:absolute;inset:0;background:rgba(0,0,0,.34)}
 .hero-in{position:relative;z-index:2;width:100%;display:flex;justify-content:space-between;align-items:flex-end;gap:clamp(24px,4vw,64px)}
 .h1{margin:0;max-width:11em;font-weight:400;font-size:clamp(38px,4.6vw,84px);line-height:1.04;letter-spacing:-.025em;text-wrap:balance}
 .glass{flex:none;width:min(520px,38vw);padding:clamp(22px,2.2vw,32px);border-radius:28px;background:rgba(10,10,10,.5);border:1px solid rgba(255,255,255,.12);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px)}
@@ -46,6 +46,7 @@ a{color:inherit}
 /* rounded image cards */
 .ph{position:relative;background:var(--ph);overflow:hidden;border-radius:var(--r)}
 .ph::after{content:"Photo placeholder";position:absolute;left:16px;bottom:14px;font:400 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ph-ink);z-index:2}
+.ph.has-img::after{display:none}
 .ph-in{position:absolute;inset:-9% 0;width:100%;height:118%;object-fit:cover;background:var(--ph)}
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px);padding:clamp(80px,16vh,180px) var(--g) clamp(40px,8vh,90px)}
 .cards .ph{aspect-ratio:4/3}
