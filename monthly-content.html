@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sonset | Monthly Content</title>
@@ -24,16 +25,14 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap">
-<link rel="stylesheet" href="/assets/site.css?v=20261019">
+
+<link rel="preload" href="/assets/fonts/inter-tight-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site-dark.css?v=20261026">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
-<header class="site-header">
-<div class="container header-row">
-<a class="brand" href="/"><img src="/assets/sonset-word-mark.svg" width="150" height="31" alt="Sonset home page"></a>
+<header class="hd">
+<a class="brand" href="/"><img src="/assets/wordmark-white.svg" width="118" height="24" alt="Sonset home page"></a>
 <nav class="nav" aria-label="Main">
 <a href="/monthly-content" aria-current="page">Monthly content</a>
 <a href="/campaign-days">Campaign days</a>
@@ -47,32 +46,55 @@
 <a href="/about">About</a>
 <a href="/contact">Contact</a>
 </nav></details>
-</div>
 </header>
 <main id="main">
-<div class="container"><div class="page">
-<h1>Monthly Content</h1>
-<p>Monthly Content runs the post AI system for your company. We put labels inside your photos, videos, slide decks and data files, organize them, and keep going as new media comes in.</p>
-
-<h2>Who</h2>
+<section class="pg-hero">
+<h1 class="pg-h1" data-spaced>Monthly Content</h1>
+<p class="pg-lead">Monthly Content runs the post AI system for your company. We put labels inside your photos, videos, slide decks and data files, organize them, and keep going as new media comes in.</p>
+</section>
+<div class="pg-wrap"><div class="ph pg-band" data-speed="6"><i class="ph-in"></i></div></div>
+<section class="rows">
+<div class="row"><h2>Who</h2><div class="rt">
 <p>Companies with a lot of media and several teams. We handle it across all the teams, and one person on your side approves.</p>
-
-<h2>What</h2>
+</div></div>
+<div class="row"><h2>What</h2><div class="rt">
 <p>A label inside every photo, video, slide deck and data file. It says who is in it, what it shows, who owns it, how it can be used and who to call. It also carries a number a person can call to confirm rights.</p>
 <p>We also organize your files and handle visual privacy. From the outside, a public file shows only what you chose to show. Location data and anything meant only for your company stays behind. We capture some of the footage ourselves on one planned filming day a month, build your decks, and work on site with your teams on campaign days.</p>
-
-<h2>When</h2>
+</div></div>
+<div class="row"><h2>When</h2><div class="rt">
 <p>First the plan, then the labeling, then ongoing as new media comes in. It runs as a quarterly retainer, with a monthly option after the first quarter. We hold a System Review every month. Throughout, we work with your teams to process and improve all your files.</p>
-
-<h2>Why</h2>
+</div></div>
+<div class="row"><h2>Why</h2><div class="rt">
 <p>So people and AI tools can find, trust and correctly use the right file. AI will be able to determine if it's real.</p>
-
-<h2>Payments, Terms &amp; Quotes</h2>
+</div></div>
+<div class="row"><h2>Payments, Terms &amp; Quotes</h2><div class="rt">
 <p>Monthly Content is a quarterly retainer, with a monthly option after the first quarter. For the first quarter, half is paid up front and the rest within the first 30&nbsp;days. From the second quarter on, each quarter or month is paid in full up front. Ending it takes 30&nbsp;days written notice. The written quote comes after the plan and tells you how much.</p>
-
-<h2>Not included</h2>
+</div></div>
+<div class="row"><h2>Not included</h2><div class="rt">
 <p>We do not post or schedule for you, manage your ads or add extra filming days. Strategy beyond the monthly System Review is not part of it. Email <a href="mailto:hello@thesonset.com">hello@thesonset.com</a> if you have any other questions.</p>
 </div></div>
+</section>
 </main>
+<footer class="ft">
+<div class="ft-grid">
+<div class="ft-brand"><a href="/"><img src="/assets/wordmark-white.svg" width="118" height="24" alt="Sonset home page"></a></div>
+<ul>
+<li><a href="/monthly-content">Monthly content</a></li>
+<li><a href="/campaign-days">Campaign days</a></li>
+<li><a href="/about">About</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+<ul>
+<li><a href="mailto:hello@thesonset.com">hello@thesonset.com</a></li>
+<li><a href="https://www.instagram.com/set.the.son/" rel="noopener">Instagram</a></li>
+<li><a href="https://www.linkedin.com/company/sonset-inc/" rel="noopener">LinkedIn</a></li>
+</ul>
+<address>Sonset Inc.<br>60 Richmond St E, Toronto, ON M5C&nbsp;1N8</address>
+</div>
+</footer>
+<script src="/assets/vendor/gsap.min.js"></script>
+<script src="/assets/vendor/ScrollTrigger.min.js"></script>
+<script src="/assets/vendor/lenis.min.js"></script>
+<script src="/assets/site.js?v=20261026"></script>
 </body>
 </html>

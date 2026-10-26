@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sonset | Visual Systems &amp; Infrastructure</title>
@@ -24,10 +25,6 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap">
-<link rel="stylesheet" href="/assets/site.css?v=20261019">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -63,12 +60,14 @@
   "url": "https://www.thesonset.com/"
 }
 </script>
+
+<link rel="preload" href="/assets/fonts/inter-tight-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site-dark.css?v=20261026">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
-<header class="site-header">
-<div class="container header-row">
-<a class="brand" href="/"><img src="/assets/sonset-word-mark.svg" width="150" height="31" alt="Sonset home page"></a>
+<header class="hd">
+<a class="brand" href="/"><img src="/assets/wordmark-white.svg" width="118" height="24" alt="Sonset home page"></a>
 <nav class="nav" aria-label="Main">
 <a href="/monthly-content">Monthly content</a>
 <a href="/campaign-days">Campaign days</a>
@@ -82,16 +81,50 @@
 <a href="/about">About</a>
 <a href="/contact">Contact</a>
 </nav></details>
-</div>
 </header>
 <main id="main">
-<div class="container">
-<section class="hero-home">
-<h1>Building the visual infrastructure for post AI environments</h1>
+<section class="hero">
+<img class="hero-bg" src="/assets/img/aurora.jpg" alt="" width="1920" height="1088">
+<div class="scrim"></div>
+<div class="hero-in">
+<h1 class="h1" data-spaced>Building the visual infrastructure for post AI environments</h1>
+<div class="glass">
 <p>People will soon force AI to ask where a file came from, whether it is even real and if they have access to use it. We put the answer inside your photos, videos, decks and all other data files, and that helps protect you from malicious attacks.</p>
-<a class="cta" href="/contact">Request access</a>
-</section>
+<a class="pill" href="/contact">Request access</a>
 </div>
+</div>
+</section>
+<section class="cards" aria-hidden="true"><div class="ph "><i class="ph-in"></i></div><div class="ph "><i class="ph-in"></i></div><div class="ph "><i class="ph-in"></i></div></section>
+<section class="svc" aria-label="Pages">
+<ul>
+<li><a href="/monthly-content">Monthly content<i aria-hidden="true">01</i></a></li>
+<li><a href="/campaign-days">Campaign days<i aria-hidden="true">02</i></a></li>
+<li><a href="/about">About<i aria-hidden="true">03</i></a></li>
+<li><a href="/contact">Contact<i aria-hidden="true">04</i></a></li>
+</ul>
+<div class="svc-pane" aria-hidden="true"><div class="ph "><i class="ph-in"></i></div><div class="ph "><i class="ph-in"></i></div><div class="ph "><i class="ph-in"></i></div><div class="ph "><i class="ph-in"></i></div></div>
+</section>
 </main>
+<footer class="ft">
+<div class="ft-grid">
+<div class="ft-brand"><a href="/"><img src="/assets/wordmark-white.svg" width="118" height="24" alt="Sonset home page"></a></div>
+<ul>
+<li><a href="/monthly-content">Monthly content</a></li>
+<li><a href="/campaign-days">Campaign days</a></li>
+<li><a href="/about">About</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+<ul>
+<li><a href="mailto:hello@thesonset.com">hello@thesonset.com</a></li>
+<li><a href="https://www.instagram.com/set.the.son/" rel="noopener">Instagram</a></li>
+<li><a href="https://www.linkedin.com/company/sonset-inc/" rel="noopener">LinkedIn</a></li>
+</ul>
+<address>Sonset Inc.<br>60 Richmond St E, Toronto, ON M5C&nbsp;1N8</address>
+</div>
+</footer>
+<script src="/assets/vendor/gsap.min.js"></script>
+<script src="/assets/vendor/ScrollTrigger.min.js"></script>
+<script src="/assets/vendor/lenis.min.js"></script>
+<script src="/assets/site.js?v=20261026"></script>
 </body>
 </html>

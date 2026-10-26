@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sonset | Campaign Days</title>
@@ -24,16 +25,14 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap">
-<link rel="stylesheet" href="/assets/site.css?v=20261019">
+
+<link rel="preload" href="/assets/fonts/inter-tight-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site-dark.css?v=20261026">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
-<header class="site-header">
-<div class="container header-row">
-<a class="brand" href="/"><img src="/assets/sonset-word-mark.svg" width="150" height="31" alt="Sonset home page"></a>
+<header class="hd">
+<a class="brand" href="/"><img src="/assets/wordmark-white.svg" width="118" height="24" alt="Sonset home page"></a>
 <nav class="nav" aria-label="Main">
 <a href="/monthly-content">Monthly content</a>
 <a href="/campaign-days" aria-current="page">Campaign days</a>
@@ -47,24 +46,48 @@
 <a href="/about">About</a>
 <a href="/contact">Contact</a>
 </nav></details>
-</div>
 </header>
 <main id="main">
-<div class="container"><div class="page">
-<h1>Campaign Days</h1>
-<p>A campaign day is one full day on site with our team. We work with your teams, run through the approved plan, and capture the photos and videos for your system.</p>
-
-<h2>On the Day</h2>
+<section class="pg-hero">
+<h1 class="pg-h1" data-spaced>Campaign Days</h1>
+<p class="pg-lead">A campaign day is one full day on site with our team. We work with your teams, run through the approved plan, and capture the photos and videos for your system.</p>
+</section>
+<div class="pg-wrap"><div class="ph pg-band" data-speed="6"><i class="ph-in"></i></div></div>
+<section class="rows">
+<div class="row"><h2>On the Day</h2><div class="rt">
 <p>A campaign day starts in week 2, once all plans have been approved. Our full team of photographers and assistants works through the plan on site, for one full day. You prepare a setting for our team and let us work.</p>
-
-<h2>Where Each Picture Runs</h2>
+</div></div>
+<div class="row"><h2>Where Each Picture Runs</h2><div class="rt">
 <p>Before the shoot day we agree where each picture will run, such as a wide banner on the home page or a phone screen. A picture framed for a phone crops badly in a wide banner, with the person at the edge and no room for a headline. Each picture is framed for the place it will run.</p>
-
-<h2>Rights</h2>
+</div></div>
+<div class="row"><h2>Rights</h2><div class="rt">
 <p>You set your rights as the first line of defence, and protection to your digital assets.</p>
-
+</div></div>
+<div class="row"><h2></h2><div class="rt">
 <p>Email <a href="mailto:hello@thesonset.com">hello@thesonset.com</a> if you have any other questions.</p>
 </div></div>
+</section>
 </main>
+<footer class="ft">
+<div class="ft-grid">
+<div class="ft-brand"><a href="/"><img src="/assets/wordmark-white.svg" width="118" height="24" alt="Sonset home page"></a></div>
+<ul>
+<li><a href="/monthly-content">Monthly content</a></li>
+<li><a href="/campaign-days">Campaign days</a></li>
+<li><a href="/about">About</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+<ul>
+<li><a href="mailto:hello@thesonset.com">hello@thesonset.com</a></li>
+<li><a href="https://www.instagram.com/set.the.son/" rel="noopener">Instagram</a></li>
+<li><a href="https://www.linkedin.com/company/sonset-inc/" rel="noopener">LinkedIn</a></li>
+</ul>
+<address>Sonset Inc.<br>60 Richmond St E, Toronto, ON M5C&nbsp;1N8</address>
+</div>
+</footer>
+<script src="/assets/vendor/gsap.min.js"></script>
+<script src="/assets/vendor/ScrollTrigger.min.js"></script>
+<script src="/assets/vendor/lenis.min.js"></script>
+<script src="/assets/site.js?v=20261026"></script>
 </body>
 </html>
