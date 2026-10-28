@@ -114,7 +114,7 @@ a{color:inherit}
 .menu[open] .bars{background:transparent}
 .menu[open] .bars::before{transform:translateY(6px) rotate(45deg)}
 .menu[open] .bars::after{transform:translateY(-6px) rotate(-45deg)}
-.menu-panel{position:fixed;inset:0;z-index:-1;background:#080808;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:90px var(--g) 40px}
+.menu-panel{position:absolute;top:0;left:0;right:0;height:100vh;height:100dvh;z-index:-1;background:#080808;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:90px var(--g) 40px}
 .menu-panel a{font-size:clamp(38px,11vw,64px);font-weight:500;letter-spacing:-.03em;line-height:1.1;text-decoration:none;color:#fff}
 .hero-in{flex-direction:column;align-items:flex-start;gap:24px}
 .glass{width:100%}
