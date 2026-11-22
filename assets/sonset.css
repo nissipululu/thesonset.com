@@ -346,7 +346,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .js .lab-pin{position:sticky;top:var(--bar)}
   .lab-ph{position:absolute;inset:0}
   .lab-ph img{object-position:64% 50%}
-  .lab-scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,7,7,.9) 0,rgba(7,7,7,.62) 30%,rgba(7,7,7,0) 54%)}
+  .lab-scrim{position:absolute;inset:0;background:radial-gradient(ellipse 34% 21% at 69% 13%,rgba(7,7,7,.84) 0,rgba(7,7,7,.72) 55%,rgba(7,7,7,0) 100%),linear-gradient(90deg,rgba(7,7,7,.9) 0,rgba(7,7,7,.62) 30%,rgba(7,7,7,0) 54%)}
   .lab-n{position:absolute;left:calc(var(--g) - .04em);top:clamp(30px,5vh,60px);font-size:clamp(120px,16vw,330px)}
   .lab-p{position:absolute;left:var(--c);top:clamp(30px,5vh,60px);width:min(38vw,25em)}
   .lab-rows{position:absolute;left:var(--g);bottom:clamp(30px,5vh,60px);width:calc(50% - var(--g) * 1.5)}
