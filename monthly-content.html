@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sonset | Monthly Content</title>
@@ -26,75 +27,180 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
 
-<link rel="preload" href="/assets/fonts/inter-tight-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site-dark.css?v=20261028">
+<link rel="preload" href="/assets/fonts/mona-sans-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/sonset.css?v=20261121">
+<script>(function(d){if((window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)||/[?&]still\b/.test(location.search))return;d.className='js';setTimeout(function(){if(!window.__sonset)d.className=''},3500)})(document.documentElement)</script>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to main content</a>
-<header class="hd">
-<a class="brand" href="/"><img src="/assets/wordmark-white.svg" width="118" height="24" alt="Sonset home page"></a>
-<nav class="nav" aria-label="Main">
-<a href="/monthly-content" aria-current="page">Monthly content</a>
-<a href="/campaign-days">Campaign days</a>
-<a href="/about">About</a>
-<a href="/contact">Contact</a>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="bar">
+<a class="bar-brand" href="/"><img src="/assets/wordmark-white.svg" width="87" height="18" alt="Sonset home page"></a>
+<nav class="bar-nav" aria-label="Main">
+<a class="on" href="/#monthly-content">Monthly content</a>
+<a href="/#campaign-days">Campaign days</a>
+<a href="/#about">About</a>
 </nav>
-<details class="menu"><summary aria-label="Menu"><span class="bars"></span></summary>
-<nav class="menu-panel" aria-label="Main menu">
-<a href="/monthly-content" aria-current="page">Monthly content</a>
-<a href="/campaign-days">Campaign days</a>
-<a href="/about">About</a>
-<a href="/contact">Contact</a>
-</nav></details>
+<div class="bar-scale" aria-hidden="true"><i data-fill></i></div>
+<p class="bar-pct ro" aria-hidden="true"><b data-pct>000</b></p>
+<p class="bar-clock ro" data-clock hidden></p>
+<div class="bar-cta"><a class="bk" href="/contact" data-q>Tell us what you need</a></div>
+<button class="bar-menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu" hidden><i></i><i></i></button>
 </header>
-<main id="main">
-<section class="pg-hero">
-<h1 class="pg-h1" data-spaced>Monthly Content</h1>
-<p class="pg-lead">Monthly Content runs the post AI system for your company. We put labels inside your photos, videos, slide decks and data files, organize them, and keep going as new media comes in.</p>
-</section>
-<div class="pg-wrap"><div class="ph has-img pg-band" data-speed="6"><img class="ph-in" src="/assets/img/band-monthly.webp" alt="A video control room with a wall of monitors" loading="lazy" decoding="async"></div></div>
-<section class="rows">
-<div class="row"><h2>Who</h2><div class="rt">
+
+<div class="menu" id="menu" hidden>
+<nav class="menu-nav" aria-label="Menu">
+<a href="/#monthly-content">Monthly content <i class="ro" aria-hidden="true">01</i></a>
+<a href="/#campaign-days">Campaign days <i class="ro" aria-hidden="true">02</i></a>
+<a href="/#about">About <i class="ro" aria-hidden="true">03</i></a>
+<a href="/#contact">Contact <i class="ro" aria-hidden="true">04</i></a>
+</nav>
+<a class="bk" href="/contact" data-q>Tell us what you need</a>
+</div>
+
+<div class="dock">
+<i class="dock-line" data-fill-x aria-hidden="true"></i>
+<a class="bk" href="/contact" data-q>Tell us what you need</a>
+<p class="ro" aria-hidden="true"><b data-pct>000</b></p>
+</div>
+
+<div class="vf" aria-hidden="true"><i></i><i></i></div>
+
+<main id="main" class="pg pg-mc">
+<section class="sec">
+<header class="sec-h">
+<p class="sec-n ro" aria-hidden="true"><span>01</span> <span>04</span></p>
+<h1 class="mon" data-r>Monthly Content</h1>
+</header>
+<div class="sec-lead">
+<p class="lead" data-r>Monthly Content runs the post AI system for your company. We put labels inside your photos, videos, slide decks and data files, organize them, and keep going as new media comes in.</p>
+</div>
+<figure class="ph band"><div class="ph-i" data-r="clip"><img src="/visuals/band-monthly.webp" width="2400" height="1597" alt="A video control room with a wall of monitors" loading="lazy" decoding="async"></div><span class="cm" aria-hidden="true"><i></i><i></i><i></i><i></i></span><figcaption class="ro" aria-hidden="true"><span>01</span> <span data-n>2400 × 1597</span></figcaption></figure>
+<div class="spec" data-spec>
+<article class="row"><p class="row-n ro" aria-hidden="true"><i class="sq"></i> 01</p><h2 class="row-w">Who</h2><div class="row-t">
 <p>Companies with a lot of media and several teams. We handle it across all the teams, and one person on your side approves.</p>
-</div></div>
-<div class="row"><h2>What</h2><div class="rt">
+</div></article>
+<article class="row"><p class="row-n ro" aria-hidden="true"><i class="sq"></i> 02</p><h2 class="row-w">What</h2><div class="row-t">
 <p>A label inside every photo, video, slide deck and data file. It says who is in it, what it shows, who owns it, how it can be used and who to call. It also carries a number a person can call to confirm rights.</p>
 <p>We also organize your files and handle visual privacy. From the outside, a public file shows only what you chose to show. Location data and anything meant only for your company stays behind. We capture some of the footage ourselves on one planned filming day a month, build your decks, and work on site with your teams on campaign days.</p>
-</div></div>
-<div class="row"><h2>When</h2><div class="rt">
+</div></article>
+<article class="row"><p class="row-n ro" aria-hidden="true"><i class="sq"></i> 03</p><h2 class="row-w">When</h2><div class="row-t">
 <p>First the plan, then the labeling, then ongoing as new media comes in. It runs as a quarterly retainer, with a monthly option after the first quarter. We hold a System Review every month. Throughout, we work with your teams to process and improve all your files.</p>
-</div></div>
-<div class="row"><h2>Why</h2><div class="rt">
+</div></article>
+<article class="row"><p class="row-n ro" aria-hidden="true"><i class="sq"></i> 04</p><h2 class="row-w">Why</h2><div class="row-t">
 <p>So people and AI tools can find, trust and correctly use the right file. AI will be able to determine if it's real.</p>
-</div></div>
-<div class="row"><h2>Payments, Terms &amp; Quotes</h2><div class="rt">
+</div></article>
+<article class="row" id="terms"><p class="row-n ro" aria-hidden="true"><i class="sq"></i> 05</p><h2 class="row-w row-s">Payments, Terms &amp; Quotes</h2><div class="row-t">
 <p>Monthly Content is a quarterly retainer, with a monthly option after the first quarter. For the first quarter, half is paid up front and the rest within the first 30&nbsp;days. From the second quarter on, each quarter or month is paid in full up front. Ending it takes 30&nbsp;days written notice. The written quote comes after the plan and tells you how much.</p>
-</div></div>
-<div class="row"><h2>Not included</h2><div class="rt">
-<p>We do not post or schedule for you, manage your ads or add extra filming days. Strategy beyond the monthly System Review is not part of it. Email <a href="mailto:hello@thesonset.com">hello@thesonset.com</a> if you have any other questions.</p>
-</div></div>
+</div></article>
+<article class="row" id="not-included"><p class="row-n ro" aria-hidden="true"><i class="sq"></i> 06</p><h2 class="row-w row-s">Not included</h2><div class="row-t">
+<p>We do not post or schedule for you, manage your ads or add extra filming days. Strategy beyond the monthly System Review is not part of it. Email <a class="u u-on" href="mailto:hello@thesonset.com">hello@thesonset.com</a> if you have any other questions.</p>
+</div></article>
+</div>
 </section>
 </main>
-<footer class="ft">
-<div class="ft-grid">
-<div class="ft-brand"><a href="/"><img src="/assets/wordmark-white.svg" width="118" height="24" alt="Sonset home page"></a></div>
+
+<footer class="ft ro">
+<a class="ft-brand" href="/"><img src="/assets/wordmark-white.svg" width="87" height="18" alt="Sonset home page"></a>
 <ul>
-<li><a href="/monthly-content">Monthly content</a></li>
-<li><a href="/campaign-days">Campaign days</a></li>
-<li><a href="/about">About</a></li>
-<li><a href="/contact">Contact</a></li>
+<li><a class="u" href="/monthly-content">Monthly content</a></li>
+<li><a class="u" href="/campaign-days">Campaign days</a></li>
+<li><a class="u" href="/about">About</a></li>
+<li><a class="u" href="/contact">Contact</a></li>
 </ul>
 <ul>
-<li><a href="mailto:hello@thesonset.com">hello@thesonset.com</a></li>
-<li><a href="https://www.instagram.com/set.the.son/" rel="noopener">Instagram</a></li>
-<li><a href="https://www.linkedin.com/company/sonset-inc/" rel="noopener">LinkedIn</a></li>
+<li><a class="u" href="mailto:hello@thesonset.com">hello@thesonset.com</a></li>
+<li><a class="u" href="https://www.instagram.com/set.the.son/" rel="noopener">Instagram</a></li>
+<li><a class="u" href="https://www.linkedin.com/company/sonset-inc/" rel="noopener">LinkedIn</a></li>
 </ul>
-<address>Sonset Inc.<br>60 Richmond St E, Toronto, ON M5C&nbsp;1N8</address>
-</div>
+<address>Sonset Inc. <br>60 Richmond St E, Toronto, ON <span class="nw">M5C 1N8</span></address>
 </footer>
+
+<dialog class="q" id="q" aria-labelledby="q1" data-lenis-prevent>
+<form class="q-f" novalidate>
+<header class="q-top">
+<span class="q-brand"><img src="/assets/wordmark-white.svg" width="87" height="18" alt=""></span>
+<p class="q-count ro" aria-live="polite"><b data-q-n>1</b> / 5</p>
+<div class="q-close"><button class="bk" type="button" data-q-close>Close</button></div>
+<i class="q-prog" aria-hidden="true"><i data-q-prog></i></i>
+</header>
+<div class="q-body">
+
+<section class="q-s" data-step="0" role="group" aria-labelledby="q1">
+<h2 id="q1" tabindex="-1">What do you need help with?</h2>
+<div class="q-r">
+<p class="q-hint ro">Select all that apply</p>
+<label class="q-o"><input type="checkbox" name="Needs" value="Labels inside our files"><i class="sq"></i> <span>Labels inside our files</span> <i class="ro" aria-hidden="true">01</i></label>
+<label class="q-o"><input type="checkbox" name="Needs" value="Organizing our media"><i class="sq"></i> <span>Organizing our media</span> <i class="ro" aria-hidden="true">02</i></label>
+<label class="q-o"><input type="checkbox" name="Needs" value="Visual privacy"><i class="sq"></i> <span>Visual privacy</span> <i class="ro" aria-hidden="true">03</i></label>
+<label class="q-o"><input type="checkbox" name="Needs" value="Photos and videos made for us"><i class="sq"></i> <span>Photos and videos made for us</span> <i class="ro" aria-hidden="true">04</i></label>
+<label class="q-o"><input type="checkbox" name="Needs" value="Not sure yet"><i class="sq"></i> <span>Not sure yet</span> <i class="ro" aria-hidden="true">05</i></label>
+<p class="q-err ro" role="alert" hidden><i class="sq"></i> Choose at least one.</p>
+</div>
+</section>
+
+<section class="q-s" data-step="1" role="group" aria-labelledby="q2" hidden>
+<h2 id="q2" tabindex="-1">Who is it for?</h2>
+<div class="q-r">
+<label class="q-o"><input type="radio" name="For" value="One team"><i class="sq"></i> <span>One team</span> <i class="ro" aria-hidden="true">01</i></label>
+<label class="q-o"><input type="radio" name="For" value="Several teams"><i class="sq"></i> <span>Several teams</span> <i class="ro" aria-hidden="true">02</i></label>
+<label class="q-o"><input type="radio" name="For" value="The whole company"><i class="sq"></i> <span>The whole company</span> <i class="ro" aria-hidden="true">03</i></label>
+<p class="q-err ro" role="alert" hidden><i class="sq"></i> Choose at least one.</p>
+</div>
+</section>
+
+<section class="q-s" data-step="2" role="group" aria-labelledby="q3" hidden>
+<h2 id="q3" tabindex="-1">When do you want to start?</h2>
+<div class="q-r">
+<label class="q-o"><input type="radio" name="Start" value="As soon as possible"><i class="sq"></i> <span>As soon as possible</span> <i class="ro" aria-hidden="true">01</i></label>
+<label class="q-o"><input type="radio" name="Start" value="This quarter"><i class="sq"></i> <span>This quarter</span> <i class="ro" aria-hidden="true">02</i></label>
+<label class="q-o"><input type="radio" name="Start" value="Later this year"><i class="sq"></i> <span>Later this year</span> <i class="ro" aria-hidden="true">03</i></label>
+<label class="q-o"><input type="radio" name="Start" value="Not sure yet"><i class="sq"></i> <span>Not sure yet</span> <i class="ro" aria-hidden="true">04</i></label>
+<p class="q-err ro" role="alert" hidden><i class="sq"></i> Choose at least one.</p>
+</div>
+</section>
+
+<section class="q-s" data-step="3" role="group" aria-labelledby="q4" hidden>
+<h2 id="q4" tabindex="-1">Anything else we should know?</h2>
+<div class="q-r">
+<label class="q-fl"><span class="ro">Optional</span><textarea name="Notes" rows="5" aria-labelledby="q4"></textarea></label>
+</div>
+</section>
+
+<section class="q-s" data-step="4" role="group" aria-labelledby="q5" hidden>
+<h2 id="q5" tabindex="-1">Where can we reach you?</h2>
+<div class="q-r">
+<label class="q-fl"><span class="ro">Name</span><input type="text" name="Name" autocomplete="name"></label>
+<p class="q-err ro" role="alert" data-for="Name" hidden><i class="sq"></i> Enter your name.</p>
+<label class="q-fl"><span class="ro">Work email</span><input type="email" name="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false"></label>
+<p class="q-err ro" role="alert" data-for="email" hidden><i class="sq"></i> Enter a valid email address.</p>
+<label class="q-fl"><span class="ro">Company <i>Optional</i></span><input type="text" name="Company" autocomplete="organization"></label>
+<p class="q-note">That is everything. We reply by email.</p>
+</div>
+</section>
+
+<section class="q-s" data-step="sent" hidden>
+<h2 id="q-sent" tabindex="-1">Sent. We will reply by email.</h2>
+<div class="q-r"><button class="bk" type="button" data-q-close>Close</button></div>
+</section>
+
+<section class="q-s" data-step="fail" hidden>
+<h2 id="q-fail" tabindex="-1">It did not send. Email <a class="u u-on" href="mailto:hello@thesonset.com" data-q-mail>hello@thesonset.com</a> and we will take it from there.</h2>
+<div class="q-r"><button class="bk" type="button" data-q-close>Close</button></div>
+</section>
+
+</div>
+<footer class="q-bot">
+<button class="q-back ro" type="button" data-q-back>Back</button>
+<button class="q-go" type="submit" data-q-go>Continue</button>
+</footer>
+<input class="q-trap" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+</form>
+</dialog>
+
 <script src="/assets/vendor/gsap.min.js"></script>
 <script src="/assets/vendor/ScrollTrigger.min.js"></script>
 <script src="/assets/vendor/lenis.min.js"></script>
-<script src="/assets/site.js?v=20261026"></script>
+<script src="/assets/sonset.js?v=20261121"></script>
 </body>
 </html>
