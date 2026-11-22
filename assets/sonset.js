@@ -16,10 +16,66 @@
   var gsap = w.gsap, ST = w.ScrollTrigger;
   var motion = !!(gsap && ST) && !still && root.classList.contains('js');
   w.__sonset = true;
+  root.classList.remove('nj');
   if (!motion) { root.classList.remove('js'); root.classList.add('still'); }
   else { gsap.registerPlugin(ST); }
 
   var barH = function () { return parseFloat(getComputedStyle(root).getPropertyValue('--bar')) || 48; };
+
+  /* ---------- sound: off until the visitor turns it on. Nothing is remembered between pages. ---------- */
+  var SOUND_URL = '/assets/vendor/uisfx.min.js?v=20261124';
+  var SOUND_PACK = 'studio', SOUND_VOLUME = 1;
+  var sfx = (function () {
+    var AC = w.AudioContext || w.webkitAudioContext;
+    var switches = $$('[data-sound]');
+    var api = { play: function () {}, isOn: function () { return false; }, setPack: function () {}, setVolume: function () {} };
+    if (!AC || !switches.length || typeof w.Promise !== 'function') return api;
+    var ctx = null, lib = null, player = null, on = false;
+    var paint = function () {
+      switches.forEach(function (b) {
+        b.setAttribute('aria-checked', String(on));
+        var s = $('b', b); if (s) s.textContent = on ? 'On' : 'Off';
+      });
+    };
+    var load = function () {
+      if (!lib) lib = import(SOUND_URL).then(null, function () { lib = null; return null; });
+      return lib;
+    };
+    /* audio starts inside the tap: a short silent sound also unlocks it on iPhone */
+    var wake = function () {
+      ctx = ctx || new AC();
+      if (ctx.state === 'suspended' && ctx.resume) ctx.resume();
+      var b = ctx.createBuffer(1, 1, 22050), s = ctx.createBufferSource();
+      s.buffer = b; s.connect(ctx.destination); if (s.start) s.start(0);
+    };
+    var turnOn = function () {
+      try { wake(); } catch (e) { return; }
+      on = true; paint();
+      load().then(function (m) {
+        if (!m) { on = false; paint(); return; }
+        if (!player) player = m.createUISFX({ pack: SOUND_PACK, volume: SOUND_VOLUME, context: ctx });
+        return player.unlock().then(function () { if (on) player.play('toggle-on'); });
+      }).then(null, function () { on = false; paint(); });
+    };
+    var turnOff = function () {
+      if (player) player.play('toggle-off');
+      on = false; paint();
+    };
+    switches.forEach(function (b) {
+      b.hidden = false;
+      b.addEventListener('click', function () { if (on) turnOff(); else turnOn(); });
+      var warm = function () { load(); };
+      b.addEventListener('pointerenter', warm, { once: true });
+      b.addEventListener('focus', warm, { once: true });
+    });
+    d.addEventListener('visibilitychange', function () { if (d.hidden && player) player.stopAll(); });
+    api.play = function (cue) { if (on && player) player.play(cue); };
+    api.isOn = function () { return on; };
+    api.setPack = function (n) { SOUND_PACK = n; if (player) player.setPack(n); };
+    api.setVolume = function (v) { SOUND_VOLUME = v; if (player) player.setVolume(v); };
+    return api;
+  })();
+  if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) w.__sfx = sfx;
 
   /* ---------- smooth scroll ---------- */
   var lenis = null;
@@ -74,14 +130,14 @@
   var menuBtn = $('.bar-menu'), menu = $('#menu'), menuOpen = false;
   function openMenu() {
     if (menuOpen || !menu) return;
-    menuOpen = true; menu.hidden = false;
+    menuOpen = true; menu.hidden = false; sfx.play('open');
     menuBtn.setAttribute('aria-expanded', 'true'); menuBtn.setAttribute('aria-label', 'Close');
     lock(true);
     var first = $('a', menu); if (first) first.focus();
   }
-  function closeMenu(refocus) {
+  function closeMenu(refocus, quiet) {
     if (!menuOpen) return;
-    menuOpen = false; menu.hidden = true;
+    menuOpen = false; menu.hidden = true; if (!quiet) sfx.play('close');
     menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.setAttribute('aria-label', 'Menu');
     lock(false);
     if (refocus) menuBtn.focus();
@@ -100,7 +156,7 @@
     });
     if (w.matchMedia) {
       var mq = w.matchMedia('(min-width: 900px)');
-      var onMq = function () { if (mq.matches) closeMenu(false); };
+      var onMq = function () { if (mq.matches) closeMenu(false, true); };
       if (mq.addEventListener) mq.addEventListener('change', onMq); else if (mq.addListener) mq.addListener(onMq);
     }
   }
@@ -118,7 +174,7 @@
   d.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!a) return;
-    if (a.hasAttribute('data-q')) { e.preventDefault(); closeMenu(false); openQ(a); return; }
+    if (a.hasAttribute('data-q')) { e.preventDefault(); closeMenu(false, true); openQ(a); return; }
     var m = /^\/?#([\w-]+)$/.exec(a.getAttribute('href') || '');
     if (!m || !/^\/(index\.html)?$/.test(location.pathname)) return;
     var target = d.getElementById(m[1]);
@@ -129,13 +185,14 @@
     if (history.replaceState) history.replaceState(null, '', '#' + m[1]);
   });
   d.addEventListener('keydown', function (e) {
-    if ((e.key === ' ' || e.key === 'Spacebar') && e.target && e.target.hasAttribute && e.target.hasAttribute('data-q')) { e.preventDefault(); closeMenu(false); openQ(e.target); }
+    if ((e.key === ' ' || e.key === 'Spacebar') && e.target && e.target.hasAttribute && e.target.hasAttribute('data-q')) { e.preventDefault(); closeMenu(false, true); openQ(e.target); }
   });
 
   /* ---------- where each picture runs ---------- */
   var fd = $('[data-fd]');
   if (fd) {
     var fdBtns = $$('[data-fd-b]', fd), fdRatio = $('[data-fd-r]', fd), fdCur = 'wide', fdTimer = 0;
+    var snapLater = function () { setTimeout(function () { sfx.play('snap'); }, 380); };
     var setFd = function (to) {
       clearTimeout(fdTimer);
       fdCur = to;
@@ -144,18 +201,18 @@
       if (!motion) { fd.setAttribute('data-s', to); return; }
       /* first the bad crop: the other picture forced into this shape. Then the picture framed for the place. */
       fd.setAttribute('data-s', to + 'bad');
-      fdTimer = setTimeout(function () { fd.setAttribute('data-s', to); }, 1300);
+      fdTimer = setTimeout(function () { fd.setAttribute('data-s', to); snapLater(); }, 1700);
     };
     fdBtns.forEach(function (b) {
       b.addEventListener('click', function () {
         var to = b.getAttribute('data-fd-b');
-        if (to !== fdCur) setFd(to);
+        if (to !== fdCur) { sfx.play('select'); setFd(to); }
       });
     });
     if (motion) {
       fd.setAttribute('data-s', 'widebad');
       ST.create({ trigger: $('.fd-stage', fd), start: 'top 72%', once: true, onEnter: function () {
-        fdTimer = setTimeout(function () { if (fdCur === 'wide') fd.setAttribute('data-s', 'wide'); }, 650);
+        fdTimer = setTimeout(function () { if (fdCur === 'wide') { fd.setAttribute('data-s', 'wide'); snapLater(); } }, 1600);
       } });
     }
   }
@@ -188,12 +245,11 @@
   }
 
   if (motion) {
-    /* intro: under a second and a half, never blocking */
-    var h1 = $('.hero-h');
-    if (h1) split(h1);
+    /* intro: it runs in the stylesheet from the first paint, so a slow connection never hides or replays it.
+       The size readout only counts up when this file arrived quickly: later it would reset a number already showing. */
     requestAnimationFrame(function () { requestAnimationFrame(function () {
       root.classList.add('go');
-      var hn = $('.hero [data-n]'); if (hn) setTimeout(function () { countUp(hn); }, 500);
+      var hn = $('.hero [data-n]'); if (hn && w.performance && w.performance.now() < 1800) setTimeout(function () { countUp(hn); }, 500);
     }); });
 
     /* reveals, and readouts that count to the real size of each picture */
@@ -264,6 +320,7 @@
         var n = 0, i;
         for (i = 0; i < marks.length; i++) if (s >= marks[i]) n = i + 1;
         if (n !== lastN) {
+          if (lastN >= 0 && n > lastN) sfx.play('check');
           lastN = n;
           labRows.forEach(function (li, k) { li.classList.toggle('on', k < n); li.classList.toggle('cur', k === n - 1); });
           labN.textContent = pad(n, 2);
@@ -366,8 +423,9 @@
     };
     var finish = function (ok, data) {
       sending = false;
-      if (ok) { show('sent'); return; }
+      if (ok) { sfx.play('success'); show('sent'); return; }
       if (mailA) mailA.setAttribute('href', mailto(data));
+      sfx.play('error');
       show('fail');
     };
     var send = function () {
@@ -378,6 +436,7 @@
       var data = answers();
       /* the trap field is empty for real people: if it is filled, nothing is sent */
       if (field('_honey').value) { finish(true, data); return; }
+      sfx.play('send');
       try {
         w.fetch(RELAY, {
           method: 'POST',
@@ -392,13 +451,13 @@
     };
     var next = function () {
       if (sending || typeof at !== 'number') return;
-      if (!valid(at)) return;
-      if (at < LAST) show(at + 1); else send();
+      if (!valid(at)) { sfx.play('error'); return; }
+      if (at < LAST) { sfx.play('forward'); show(at + 1); } else send();
     };
     var back = function () {
       if (sending) return;
-      if (at === 'fail') show(LAST);
-      else if (typeof at === 'number' && at > 0) show(at - 1);
+      if (at === 'fail') { sfx.play('back'); show(LAST); }
+      else if (typeof at === 'number' && at > 0) { sfx.play('back'); show(at - 1); }
     };
 
     openQ = function (from) {
@@ -406,11 +465,13 @@
       opener = from || null;
       if (typeof q.showModal === 'function') q.showModal(); else q.setAttribute('open', '');
       lock(true);
+      sfx.play('open');
       show(at);
     };
     var shut = function () { if (typeof q.close === 'function') q.close(); else { q.removeAttribute('open'); onClose(); } };
     var onClose = function () {
       lock(false);
+      sfx.play('close');
       if (at === 'sent') { form.reset(); steps.forEach(clearErr); show(0, false); }
       var o = opener;
       if (!o || !o.getClientRects || !o.getClientRects().length) o = (menuBtn && menuBtn.getClientRects().length) ? menuBtn : ($('.hero-sub .bk') || $('#main'));
@@ -441,6 +502,10 @@
       else if (!e.shiftKey && (a === last || !q.contains(a) || a === q)) { e.preventDefault(); first.focus(); }
     });
     form.addEventListener('input', function (e) { var sec = e.target.closest ? e.target.closest('.q-s') : null; if (sec) clearErr(sec); });
-    form.addEventListener('change', function (e) { var sec = e.target.closest ? e.target.closest('.q-s') : null; if (sec) clearErr(sec); });
+    form.addEventListener('change', function (e) {
+      var sec = e.target.closest ? e.target.closest('.q-s') : null; if (sec) clearErr(sec);
+      var t = e.target;
+      if (t && t.type === 'checkbox') sfx.play(t.checked ? 'check' : 'uncheck'); else if (t && t.type === 'radio') sfx.play('select');
+    });
   }
 })();

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="nj">
 <head>
 
 
@@ -28,8 +28,10 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png">
 
 <link rel="preload" href="/assets/fonts/mona-sans-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/sonset.css?v=20261123">
-<script>(function(d){if((window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)||/[?&]still\b/.test(location.search))return;d.className='js';setTimeout(function(){if(!window.__sonset)d.className=''},3500)})(document.documentElement)</script>
+<link rel="preload" href="/assets/fonts/geist-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/wordmark-white.svg" as="image">
+<link rel="stylesheet" href="/assets/sonset.css?v=20261124">
+<script>(function(d){var c=d.classList;c.remove('nj');if(!((window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)||/[?&]still\b/.test(location.search)))c.add('js');setTimeout(function(){if(!window.__sonset){c.remove('js');c.add('nj')}},3500)})(document.documentElement)</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -44,6 +46,7 @@
 <div class="bar-scale" aria-hidden="true"><i data-fill></i></div>
 <p class="bar-pct ro" aria-hidden="true"><b data-pct>000</b></p>
 <p class="bar-clock ro" data-clock hidden></p>
+<button class="bar-sound ro" type="button" role="switch" aria-checked="false" data-sound hidden><i class="sq"></i><span>Sound</span> <b>Off</b></button>
 <div class="bar-cta"><a class="bk" href="/contact" data-q>Tell us what you need</a></div>
 <button class="bar-menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu" hidden><i></i><i></i></button>
 </header>
@@ -55,7 +58,10 @@
 <a href="/#about">About <i class="ro" aria-hidden="true">03</i></a>
 <a href="/#contact">Contact <i class="ro" aria-hidden="true">04</i></a>
 </nav>
+<div class="menu-foot">
+<button class="menu-sound ro" type="button" role="switch" aria-checked="false" data-sound hidden><i class="sq"></i><span>Sound</span> <b>Off</b></button>
 <a class="bk" href="/contact" data-q>Tell us what you need</a>
+</div>
 </div>
 
 <div class="dock">
@@ -151,7 +157,7 @@
 <section class="q-s" data-step="3" role="group" aria-labelledby="q4" hidden>
 <h2 id="q4" tabindex="-1">Anything else we should know?</h2>
 <div class="q-r">
-<label class="q-fl"><span class="ro">Optional</span><textarea name="Notes" rows="5" aria-labelledby="q4"></textarea></label>
+<label class="q-fl"><span class="ro">Optional</span><textarea name="Notes" rows="5" maxlength="1000" aria-labelledby="q4"></textarea></label>
 </div>
 </section>
 
@@ -189,6 +195,6 @@
 <script src="/assets/vendor/gsap.min.js"></script>
 <script src="/assets/vendor/ScrollTrigger.min.js"></script>
 <script src="/assets/vendor/lenis.min.js"></script>
-<script src="/assets/sonset.js?v=20261123"></script>
+<script src="/assets/sonset.js?v=20261124"></script>
 </body>
 </html>

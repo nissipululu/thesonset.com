@@ -1,8 +1,8 @@
 /* Sonset. Direction: EVIDENCE. The page behaves like an instrument reading media.
    Two families (Mona Sans, Geist Mono), near black, one off white, gold only on live things. */
 
-@font-face{font-family:"Mona Sans";src:url(fonts/mona-sans-latin-wdth-normal.woff2) format("woff2");font-weight:200 900;font-stretch:75% 125%;font-style:normal;font-display:swap}
-@font-face{font-family:"Geist Mono";src:url(fonts/geist-mono-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Mona Sans";src:url(fonts/mona-sans-latin-wdth-normal.woff2) format("woff2");font-weight:200 900;font-stretch:75% 125%;font-style:normal;font-display:block}
+@font-face{font-family:"Geist Mono";src:url(fonts/geist-mono-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:block}
 
 :root{
   --bg:#070707;--ink:#ECEAE3;--mute:rgba(236,234,227,.64);--dim:rgba(236,234,227,.4);
@@ -86,6 +86,15 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .bar-clock .sq{border-color:var(--gold);background:var(--gold);width:5px;height:5px}
 .bar-cta{padding:0 calc(var(--g) - 8px) 0 var(--g)}
 .bar-menu{display:none}
+.bar-sound,.menu-sound{appearance:none;-webkit-appearance:none;background:none;border:0;border-radius:0;color:var(--mute);cursor:pointer;gap:9px;white-space:nowrap;transition:color .3s}
+.bar-sound{border-right:1px solid var(--line);padding:0 calc(var(--g) * .75)}
+.bar-sound b,.menu-sound b{font-weight:500;min-width:3ch;text-align:left;color:var(--dim);transition:color .3s}
+.bar-sound:hover,.menu-sound:hover{color:var(--ink)}
+.bar-sound:focus-visible{outline-offset:-6px}
+.bar-sound[aria-checked="true"] .sq,.menu-sound[aria-checked="true"] .sq{background:var(--gold);border-color:var(--gold)}
+.bar-sound[aria-checked="true"] b,.menu-sound[aria-checked="true"] b{color:var(--gold)}
+/* on laptop widths the bar is full: the clock steps aside so the tick scale keeps its room */
+@media (min-width:900px) and (max-width:1365px){.bar-clock{display:none}}
 .dock,.menu{display:none}
 
 /* corner marks that close the frame around the screen */
@@ -111,14 +120,15 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* intro: the frame draws, the photograph opens from the centre line, the words rise */
 .js .bar{border-bottom-color:transparent}
-.js .bar::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--line);transform:scaleX(0);transform-origin:0 50%}
-.js.go .bar::after{transform:scaleX(1);transition:transform 1.2s var(--e)}
-.js .hero-ph{clip-path:inset(0 50% 0 50%)}
-.js.go .hero-ph{clip-path:inset(0 0 0 0);transition:clip-path 1.3s var(--e) .05s}
-.js .hero-h .w{display:inline-block;opacity:0;transform:translate3d(0,.55em,0)}
-.js.go .hero-h .w{opacity:1;transform:none;transition:opacity .9s var(--e),transform 1.1s var(--e);transition-delay:calc(.3s + var(--i,0) * .045s)}
-.js .hero-sub,.js .hero-ro,.js .hero-cm{opacity:0}
-.js.go .hero-sub,.js.go .hero-ro,.js.go .hero-cm{opacity:1;transition:opacity 1s var(--e) .75s}
+.js .bar::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--line);transform-origin:0 50%;animation:bar-line 1.2s var(--e) both}
+.js .hero-ph{animation:photo-in 1.3s var(--e) .05s both}
+.js .hero-h .w{display:inline-block;animation:word-in 1s var(--e) both;animation-delay:calc(.3s + var(--i,0) * .045s)}
+.js .hero-sub,.js .hero-ro,.js .hero-cm{animation:fade-in 1s var(--e) .75s both}
+/* the intro runs from the first paint, in the stylesheet: it never waits for the scripts */
+@keyframes bar-line{from{transform:scaleX(0)}}
+@keyframes photo-in{from{clip-path:inset(0 50% 0 50%)}}
+@keyframes word-in{from{opacity:0;transform:translate3d(0,.55em,0)}}
+@keyframes fade-in{from{opacity:0}}
 
 /* reveals */
 .js [data-r]{opacity:0;transform:translate3d(0,26px,0);transition:opacity 1s var(--e),transform 1.2s var(--e)}
@@ -348,7 +358,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 @media (max-width:899px){
   :root{--bar:52px;--dock:calc(60px + env(safe-area-inset-bottom,0px));--c:var(--g)}
   body{font-size:16px}
-  .bar-nav,.bar-scale,.bar-pct,.bar-cta,.vf{display:none}
+  .bar-nav,.bar-scale,.bar-pct,.bar-cta,.bar-sound,.vf{display:none}
   .bar-brand{border-right:0;margin-right:auto}
   .bar-clock{border-right:0;gap:8px;padding:0 14px}
   .bar-clock span{display:none}
@@ -358,12 +368,20 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
   .bar-menu[aria-expanded="true"] i:first-child{transform:translate3d(0,3.5px,0) rotate(45deg)}
   .bar-menu[aria-expanded="true"] i:last-child{transform:translate3d(0,-3.5px,0) rotate(-45deg)}
   .bar-menu:focus-visible{outline-offset:-6px}
+  /* without the script there is no menu button: the three links sit in a second row of the bar */
+  html.nj{--bar:92px}
+  .nj .bar{flex-wrap:wrap;align-content:flex-start}
+  .nj .bar-brand{height:52px}
+  .nj .bar-nav{display:flex;order:9;flex:1 0 100%;height:40px;gap:22px;padding:0 var(--g);border-top:1px solid var(--line);border-right:0;overflow-x:auto}
+  .nj .bar-nav a{padding:0;white-space:nowrap}
 
   .menu{position:fixed;left:0;right:0;top:var(--bar);bottom:0;z-index:65;display:flex;flex-direction:column;justify-content:space-between;padding:8px var(--g) calc(20px + env(safe-area-inset-bottom,0px));background:var(--bg);overflow-y:auto}
   .menu-nav a{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 0 20px;border-bottom:1px solid var(--line);font-weight:600;font-stretch:108%;font-size:clamp(40px,12.4vw,96px);line-height:.86;letter-spacing:-.058em;color:var(--mute);transition:color .3s}
   .menu-nav a:active,.menu-nav a:hover{color:var(--ink)}
   .menu-nav a .ro{letter-spacing:.14em;padding-top:8px;color:var(--mute)}
   .menu .bk{align-self:stretch;min-height:56px;margin-top:28px}
+  .menu-foot{display:flex;flex-direction:column;align-items:stretch}
+  .menu-sound{display:flex;align-items:center;align-self:flex-start;padding:14px 0 2px}
   .js .menu:not([hidden]) .menu-nav a,.js .menu:not([hidden]) .bk{animation:qin .8s var(--e) both}
   .js .menu:not([hidden]) .menu-nav a:nth-child(2){animation-delay:.05s}
   .js .menu:not([hidden]) .menu-nav a:nth-child(3){animation-delay:.1s}
