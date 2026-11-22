@@ -382,7 +382,6 @@
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(data),
           credentials: 'omit',
-          referrerPolicy: 'no-referrer',
           mode: 'cors',
           cache: 'no-store'
         }).then(function (r) { return r.ok ? r.json() : null; })
