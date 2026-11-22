@@ -7,8 +7,10 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
   var pad = function (n, len) { var s = String(n); while (s.length < len) s = '0' + s; return s; };
   var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
-  var RELAY = 'https://formsubmit.co/ajax/hello@thesonset.com';
+  var RELAY = 'https://vjzemixladuomhvwlqpp.supabase.co/functions/v1/sonset-request';
+  var SUBJECT = 'New request from thesonset.com';
 
+  var t0 = Date.now();
   var reduce = !!(w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches);
   var still = reduce || /[?&]still\b/.test(location.search);
   var gsap = w.gsap, ST = w.ScrollTrigger;
@@ -345,22 +347,22 @@
     var answers = function () {
       var pick = function (n) { var c = $('input[name="' + n + '"]:checked', form); return c ? c.value : ''; };
       return {
-        Needs: $$('input[name="Needs"]:checked', form).map(function (i) { return i.value; }).join(', '),
+        Needs: $$('input[name="Needs"]:checked', form).map(function (i) { return i.value; }),
         For: pick('For'),
         Start: pick('Start'),
         Notes: field('Notes').value.trim(),
         Name: field('Name').value.trim(),
         email: field('email').value.trim(),
         Company: field('Company').value.trim(),
-        _subject: 'New request from thesonset.com',
-        _template: 'table',
-        _captcha: 'false',
-        _honey: ''
+        _honey: '',
+        /* how long the page has been open, in milliseconds: the sender turns away anything faster than a person */
+        ms: Math.round(w.performance && w.performance.now ? w.performance.now() : Date.now() - t0)
       };
     };
     var mailto = function (data) {
-      var lines = ['Needs', 'For', 'Start', 'Notes', 'Name', 'email', 'Company'].map(function (k) { return k + ': ' + data[k]; });
-      return 'mailto:hello@thesonset.com?subject=' + encodeURIComponent(data._subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+      var shown = { Needs: data.Needs.join(', '), For: data.For, Start: data.Start, Notes: data.Notes, Name: data.Name, email: data.email, Company: data.Company };
+      var lines = ['Needs', 'For', 'Start', 'Notes', 'Name', 'email', 'Company'].map(function (k) { return k + ': ' + shown[k]; });
+      return 'mailto:hello@thesonset.com?subject=' + encodeURIComponent(SUBJECT) + '&body=' + encodeURIComponent(lines.join('\n'));
     };
     var finish = function (ok, data) {
       sending = false;
@@ -379,13 +381,12 @@
       try {
         w.fetch(RELAY, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
           credentials: 'omit',
-          mode: 'cors',
-          cache: 'no-store'
+          mode: 'cors'
         }).then(function (r) { return r.ok ? r.json() : null; })
-          .then(function (j) { finish(!!j && (j.success === true || j.success === 'true'), data); })
+          .then(function (j) { finish(!!j && j.ok === true, data); })
           .catch(function () { finish(false, data); });
       } catch (e) { finish(false, data); }
     };
